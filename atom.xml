@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://mysite.com/"/>
-  <updated>2018-11-17T13:05:31.591Z</updated>
+  <updated>2018-11-18T04:19:59.570Z</updated>
   <id>http://mysite.com/</id>
   
   <author>
@@ -21,13 +21,12 @@
     <link href="http://mysite.com/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/"/>
     <id>http://mysite.com/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/</id>
     <published>2018-11-17T10:16:50.000Z</published>
-    <updated>2018-11-17T13:05:31.591Z</updated>
+    <updated>2018-11-18T04:19:59.570Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;前段时间有监控服务器主机、应用、交换机等的需求，所以对zabbix进行了学习，现在整理记录全过程。&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;1.zabbix概述
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Zabbix由以下几个组件构成：&lt;br&gt;1.1 zabbix_server: Zabbix server 是agent程序报告系统可用性、系统完整性和统计数据的核心组件，是所有配置信息、统计信息和操作数据的核心存储器。&lt;br&gt;1.2 Web界面:由php编写，是Zabbix Server的一部分，通常(使用SQLite需要，其他不是必须)跟Zabbix Server运行在同一台物理机器上。&lt;br&gt;1.3 Proxy代理服务器&lt;br&gt;Zabbix proxy 可以替Zabbix Server收集性能和可用性数据。Proxy代理服务器是Zabbix软件可选择部署的一部分；当然，Proxy代理服务器可以帮助单台Zabbix Server分担负载压力。&lt;br&gt;1.4 zabbix_agent监控代理&lt;br&gt;Zabbix agents部署在监控目标上，能够主动监控本地资源和应用程序，并将收集到的数据报告给Zabbix Server。&lt;br&gt;基本步骤: 创建主机（host）-&amp;gt; 创建监控项(item) -&amp;gt; 如果需要：监控项里创建触发器（trigger）-&amp;gt; 告警动作（action）&lt;br&gt;
+&lt;h2 id=&quot;1-zabbix概述&quot;&gt;&lt;a href=&quot;#1-zabbix概述&quot; class=&quot;headerlink&quot; title=&quot;1.zabbix概述&quot;&gt;&lt;/a&gt;1.zabbix概述&lt;/h2&gt;&lt;p&gt;Zabbix由以下几个组件构成：&lt;br&gt;1.1 zabbix_server: Zabbix server 是agent程序报告系统可用性、系统完整性和统计数据的核心组件，是所有配置信息、统计信息和操作数据的核心存储器。&lt;br&gt;1.2 Web界面:由php编写，是Zabbix Server的一部分，通常(使用SQLite需要，其他不是必须)跟Zabbix Server运行在同一台物理机器上。&lt;br&gt;1.3 Proxy代理服务器&lt;br&gt;Zabbix proxy 可以替Zabbix Server收集性能和可用性数据。Proxy代理服务器是Zabbix软件可选择部署的一部分；当然，Proxy代理服务器可以帮助单台Zabbix Server分担负载压力。&lt;br&gt;1.4 zabbix_agent监控代理&lt;br&gt;Zabbix agents部署在监控目标上，能够主动监控本地资源和应用程序，并将收集到的数据报告给Zabbix Server。&lt;br&gt;基本步骤: 创建主机（host）-&amp;gt; 创建监控项(item) -&amp;gt; 如果需要：监控项里创建触发器（trigger）-&amp;gt; 告警动作（action）&lt;br&gt;&lt;/p&gt;
     
     </summary>
     
