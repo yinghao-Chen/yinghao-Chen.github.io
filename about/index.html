@@ -5,8 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="About, 不好听的博客">
-    <meta name="description" content="About | 不好听的博客">
+    <meta name="keywords" content="关于, 不好听的博客">
+    <meta name="description" content="关于 | 不好听的博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>About | 不好听的博客</title>
+    <title>关于 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -231,22 +231,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     <div class="post-statis col l4 hide-on-med-and-down" data-aos="zoom-in-right">
                         
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">1</a></span>
-    <span class="name">Posts</span>
+    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">1</a></span>
-    <span class="name">Categories</span>
+    <span class="count"><a href="/categories" target="_blank">3</a></span>
+    <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">2</a></span>
-    <span class="name">Tags</span>
+    <span class="count"><a href="/tags" target="_blank">6</a></span>
+    <span class="name">标签</span>
 </div>
 
                     </div>
@@ -259,22 +259,22 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                                 <div class="post-statis hide-on-large-only" data-aos="zoom-in-right">
                                     
 <div class="statis">
-    <span class="count"><a href="/" target="_blank">1</a></span>
-    <span class="name">Posts</span>
+    <span class="count"><a href="/" target="_blank">2</a></span>
+    <span class="name">文章</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/categories" target="_blank">1</a></span>
-    <span class="name">Categories</span>
+    <span class="count"><a href="/categories" target="_blank">3</a></span>
+    <span class="name">分类</span>
 </div>
 
 
 
 <div class="statis">
-    <span class="count"><a href="/tags" target="_blank">2</a></span>
-    <span class="name">Tags</span>
+    <span class="count"><a href="/tags" target="_blank">6</a></span>
+    <span class="name">标签</span>
 </div>
 
                                 </div>
@@ -333,7 +333,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 </style>
 
 <div id="postCharts" class="post-charts">
-    <div class="title center-align" data-aos="zoom-in-up">Post Charts</div>
+    <div class="title center-align" data-aos="zoom-in-up">文章统计图</div>
     <div class="row">
         <div class="chart col s12 m6 l4" data-aos="zoom-in-up">
             <div id="posts-chart"></div>
@@ -359,7 +359,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     let postsOption = {
         title: {
-            text: 'Post Publish Chart',
+            text: '文章发布统计图',
             top: -5,
             x: 'center'
         },
@@ -375,27 +375,27 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         },
         series: [
             {
-                name: 'Number of posts',
+                name: '文章篇数',
                 type: 'line',
                 color: ['#6772e5'],
-                data: [0,0,0,0,0,0,0,0,0,0,0,0,1],
+                data: [0,0,0,0,0,0,0,0,0,0,0,0,2],
                 markPoint: {
                     symbolSize: 45,
                     color: ['#fa755a','#3ecf8e','#82d3f4'],
                     data: [{
                         type: 'max',
                         itemStyle: {color: ['#3ecf8e']},
-                        name: 'Maximum'
+                        name: '最大值'
                     }, {
                         type: 'min',
                         itemStyle: {color: ['#fa755a']},
-                        name: 'Minimum'
+                        name: '最小值'
                     }]
                 },
                 markLine: {
                     itemStyle: {color: ['#ab47bc']},
                     data: [
-                        {type: 'average', name: 'Average'}
+                        {type: 'average', name: '平均值'}
                     ]
                 }
             }
@@ -406,7 +406,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     let categoriesOption = {
         title: {
-            text: 'Categories Chart',
+            text: '文章分类统计图',
             top: -4,
             x: 'center'
         },
@@ -416,11 +416,11 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         },
         series: [
             {
-                name: 'Categories',
+                name: '分类',
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"zabbix","value":1}],
+                data: [{"name":"java","value":0},{"name":"zabbix","value":1},{"name":"easyui","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -436,7 +436,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     let tagsOption = {
         title: {
-            text: 'TOP10 Tags Chart',
+            text: 'TOP10 标签统计图',
             top: -5,
             x: 'center'
         },
@@ -444,7 +444,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
         xAxis: [
             {
                 type: 'category',
-                data: ["zabbix","监控"]
+                data: ["zabbix","监控","easyui","遮罩","java","design"]
             }
         ],
         yAxis: [
@@ -457,23 +457,23 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [1,1],
+                data: [1,1,1,1,0,0],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
                         type: 'max',
                         itemStyle: {color: ['#3ecf8e']},
-                        name: 'Maximum'
+                        name: '最大值'
                     }, {
                         type: 'min',
                         itemStyle: {color: ['#fa755a']},
-                        name: 'Minimum'
+                        name: '最小值'
                     }],
                 },
                 markLine: {
                     itemStyle: {color: ['#ab47bc']},
                     data: [
-                        {type: 'average', name: 'Average'}
+                        {type: 'average', name: '平均值'}
                     ]
                 }
             }
@@ -491,7 +491,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                 
                 
 <div class="my-skills">
-    <div class="title center-align" data-aos="zoom-in-up">My Skills</div>
+    <div class="title center-align" data-aos="zoom-in-up">我的技能</div>
     <div class="row">
         
         
@@ -532,8 +532,20 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 
     
     <div class="other-skills chip-container" data-aos="zoom-in-up">
-        <div class="sub-title center-align">Other Skills</div>
+        <div class="sub-title center-align">其他技能</div>
         <div class="tag-chips center-align">
+            
+            
+            <a href="/tags/java/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">java</span>
+            </a>
+            
+            
+            
+            <a href="/tags/design/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">design</span>
+            </a>
+            
             
             
             <a href="/tags/zabbix/" target="_blank">
@@ -544,6 +556,18 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             
             <a href="/tags/监控/" target="_blank">
                 <span class="chip center-align waves-effect waves-light chip-default">监控</span>
+            </a>
+            
+            
+            
+            <a href="/tags/easyui/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">easyui</span>
+            </a>
+            
+            
+            
+            <a href="/tags/遮罩/" target="_blank">
+                <span class="chip center-align waves-effect waves-light chip-default">遮罩</span>
             </a>
             
             
@@ -593,8 +617,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title">Search</span>
-            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input" autofocus>
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
         </div>
         <div id="searchResult"></div>
     </div>

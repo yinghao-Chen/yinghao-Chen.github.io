@@ -5,8 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="Categories, 不好听的博客">
-    <meta name="description" content="Categories | 不好听的博客">
+    <meta name="keywords" content="分类, 不好听的博客">
+    <meta name="description" content="分类 | 不好听的博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Categories | 不好听的博客</title>
+    <title>分类 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -222,14 +222,30 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div id="category-cloud" class="container chip-container">
     <div class="card">
         <div class="card-content">
-            <div class="tag-title center-align">Post Categories</div>
+            <div class="tag-title center-align">文章分类</div>
             <div class="tag-chips">
                 
                 
                 
+                <a href="/categories/java/" title="java: 0">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #F9EBEA;">java
+                        <span class="tag-length">0</span>
+                    </span>
+                </a>
+                
+                
                 <a href="/categories/zabbix/" title="zabbix: 1">
                     <span class="chip center-align waves-effect waves-light
-                             chip-default " style="background-color: #F9EBEA;">zabbix
+                             chip-default " style="background-color: #F5EEF8;">zabbix
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
+                
+                <a href="/categories/easyui/" title="easyui: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default " style="background-color: #D5F5E3;">easyui
                         <span class="tag-length">1</span>
                     </span>
                 </a>
@@ -263,7 +279,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
     let option = {
         title: {
             left: 'center',
-            text: 'Post Categories Radar Chart',
+            text: '文章分类雷达图',
             textStyle: {
                 fontWeight: 500,
                 fontSize: 22
@@ -276,7 +292,7 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
                     color: '#3C4858'
                 }
             },
-            indicator: [{"name":"zabbix","max":2}],
+            indicator: [{"name":"java","max":1},{"name":"zabbix","max":1},{"name":"easyui","max":1}],
             nameGap: 5,
             center: ['50%','55%'],
             radius: '66%'
@@ -287,8 +303,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
             itemStyle: {normal: {areaStyle: {type: 'default'}}},
             data : [
                 {
-                    value : [1],
-                    name : 'Number of Categories'
+                    value : [0,1,1],
+                    name : '文章分类数量'
                 }
             ]
         }]
@@ -333,8 +349,8 @@ $('.bg-cover').css('background-image', 'url(/medias/banner/' + new Date().getDay
 <div id="searchModal" class="modal">
     <div class="modal-content">
         <div class="search-header">
-            <span class="title">Search</span>
-            <input type="search" id="searchInput" name="s" placeholder="Please enter a search keyword" class="search-input" autofocus>
+            <span class="title">搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字" class="search-input" autofocus>
         </div>
         <div id="searchResult"></div>
     </div>
