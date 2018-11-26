@@ -6,7 +6,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="easyui遮罩, 不好听的博客">
-    <meta name="description" content="easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个j">
+    <meta name="description" content="easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，在显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个js">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -336,7 +336,7 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3><span id="easyui的页面加载问题">easyui的页面加载问题</span></h3><p>在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！<br><img src="/2018/11/23/easyui-zhe-zhao/images/2016322722279139.jpg" alt="日了狗" title="日了狗"><br>此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。<br><img src="/2018/11/23/easyui-zhe-zhao/images/108f3e73c794eba2555d2834272f0836.gif" alt="loading" title="loading"><br>只需要在页面中引入一个js脚本就可以了，不需其他任何操作，脚本内容如下：<br><pre><code> 
+                <h3><span id="easyui的页面加载问题">easyui的页面加载问题</span></h3><p>在用easyui做页面的过程中，总是会出现页面加载慢，在显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！<br><img src="/2018/11/23/easyui-zhe-zhao/images/2016322722279139.jpg" alt="日了狗" title="日了狗"><br>此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。<br><img src="/2018/11/23/easyui-zhe-zhao/images/108f3e73c794eba2555d2834272f0836.gif" alt="loading" title="loading"><br>只需要在页面中引入一个js脚本就可以了，不需其他任何操作，脚本内容如下：<br><pre><code> 
 &#x2F;&#x2F;获取浏览器页面可见高度和宽度 
 var _PageHeight = document.documentElement.clientHeight, _PageWidth = document.documentElement.clientWidth; 
 &#x2F;&#x2F;计算loading框距离顶部和左部的距离（loading框的宽度为215px，高度为61px）
@@ -547,13 +547,13 @@ function completeLoading() {
                 <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/">
                     <div class="card-image">
                         
-                        <img src="/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/images/image1.png" class="responsive-img" alt="easyui时间控件-选择月份">
+                        <img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" class="responsive-img" alt="easyui时间控件-选择月份">
                         
                         <span class="card-title">easyui时间控件-选择月份</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"></div>
+                    <div class="summary">easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、form</div>
                     <div class="publish-info">
                         <span class="publish-date">
                             <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-26
@@ -562,8 +562,8 @@ function completeLoading() {
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                    java
+                            <a href="/categories/easyui/" class="post-category" target="_blank">
+                                    easyui
                                 </a>
                             
                             
@@ -573,12 +573,12 @@ function completeLoading() {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/easyui/" target="_blank">
+                        <span class="chip bg-color">easyui</span>
                     </a>
                     
-                    <a href="/tags/design/" target="_blank">
-                        <span class="chip bg-color">design</span>
+                    <a href="/tags/datebox/" target="_blank">
+                        <span class="chip bg-color">datebox</span>
                     </a>
                     
                 </div>

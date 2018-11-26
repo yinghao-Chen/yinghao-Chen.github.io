@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yinghao-chen.top/"/>
-  <updated>2018-11-26T11:30:14.893Z</updated>
+  <updated>2018-11-26T11:48:35.863Z</updated>
   <id>http://www.yinghao-chen.top/</id>
   
   <author>
@@ -21,18 +21,26 @@
     <link href="http://www.yinghao-chen.top/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/"/>
     <id>http://www.yinghao-chen.top/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/</id>
     <published>2018-11-26T11:30:14.000Z</published>
-    <updated>2018-11-26T11:30:14.893Z</updated>
+    <updated>2018-11-26T11:48:35.863Z</updated>
     
     <summary type="html">
     
+      
+      
+        
+        
+          &lt;h3&gt;&lt;span id=&quot;easyui-datebox&quot;&gt;easyui-datebox&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;截止到目前的版本（&lt;a href=&quot;http://www.jeasyui.com/demo/main/index.php?plugin=DateBox&quot;
+        
+      
+    
     </summary>
     
-      <category term="java" scheme="http://www.yinghao-chen.top/categories/java/"/>
+      <category term="easyui" scheme="http://www.yinghao-chen.top/categories/easyui/"/>
     
     
-      <category term="java" scheme="http://www.yinghao-chen.top/tags/java/"/>
+      <category term="easyui" scheme="http://www.yinghao-chen.top/tags/easyui/"/>
     
-      <category term="design" scheme="http://www.yinghao-chen.top/tags/design/"/>
+      <category term="datebox" scheme="http://www.yinghao-chen.top/tags/datebox/"/>
     
   </entry>
   
@@ -41,7 +49,7 @@
     <link href="http://www.yinghao-chen.top/2018/11/23/easyui-zhe-zhao/"/>
     <id>http://www.yinghao-chen.top/2018/11/23/easyui-zhe-zhao/</id>
     <published>2018-11-23T12:27:22.000Z</published>
-    <updated>2018-11-23T12:56:32.692Z</updated>
+    <updated>2018-11-26T11:34:53.430Z</updated>
     
     <summary type="html">
     
@@ -49,7 +57,7 @@
       
         
         
-          &lt;h3&gt;&lt;span id=&quot;easyui的页面加载问题&quot;&gt;easyui的页面加载问题&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！&lt;br&gt;&lt;img
+          &lt;h3&gt;&lt;span id=&quot;easyui的页面加载问题&quot;&gt;easyui的页面加载问题&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;在用easyui做页面的过程中，总是会出现页面加载慢，在显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！&lt;br&gt;&lt;img
         
       
     

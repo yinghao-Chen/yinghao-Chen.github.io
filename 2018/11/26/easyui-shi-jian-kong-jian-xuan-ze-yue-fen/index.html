@@ -6,7 +6,7 @@
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
     <meta name="keywords" content="easyui时间控件-选择月份, 不好听的博客">
-    <meta name="description" content="easyui时间控件-选择月份 | 不好听的博客">
+    <meta name="description" content="easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、form">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -189,7 +189,7 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/images/image1.png')">
+<div class="bg-cover post-cover" style="background-image: url('/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -306,12 +306,12 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/java/" target="_blank">
-                    <span class="chip bg-color">java</span>
+                <a href="/tags/easyui/" target="_blank">
+                    <span class="chip bg-color">easyui</span>
                 </a>
                 
-                <a href="/tags/design/" target="_blank">
-                    <span class="chip bg-color">design</span>
+                <a href="/tags/datebox/" target="_blank">
+                    <span class="chip bg-color">datebox</span>
                 </a>
                 
             </div>
@@ -321,8 +321,8 @@
                 <span class="post-cate">
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/java/" class="post-category" target="_blank">
-                        java
+                    <a href="/categories/easyui/" class="post-category" target="_blank">
+                        easyui
                     </a>
                     
                 </span>
@@ -336,7 +336,44 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                
+                <h3><span id="easyui-datebox">easyui-datebox</span></h3><p>截止到目前的版本（<a href="http://www.jeasyui.com/demo/main/index.php?plugin=DateBox" target="_blank" rel="noopener">1.6.10</a>）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。<br>下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、formatter方法。</p>
+<p>首先，写一个时间输入框：<br><code>&lt;input class=&quot;easyui-datebox&quot; id=&quot;monthSpan&quot; style=&quot;width:150px;&quot;data-options=&quot;editable:false&quot;&gt;</code><br>然后，在javascript代码中，加入：<br><pre><code> 
+var p = $(&#39;#monthSpan&#39;).datebox(&#39;panel&#39;),
+	tds = false,
+	span = p.find(&#39;span.calendar-text&#39;);
+$(&#39;#monthSpan&#39;).datebox({    
+	onShowPanel: function() {
+		span.trigger(&#39;click&#39;);
+		if (!tds)    
+			setTimeout(function() {
+				tds = p.find(&#39;div.calendar-menu-month-inner td&#39;);
+               	tds.click(function(e) {    
+                   	e.stopPropagation();
+                	var year = &#x2F;\d{4}&#x2F;.exec(span.html())[0], month = parseInt($(this).attr(&#39;abbr&#39;), 10) + 1;    
+                   	$(&#39;#monthSpan&#39;).datebox(&#39;hidePanel&#39;).datebox(&#39;setValue&#39;, year + &#39;-&#39; + month);
+               	});    
+			}, 0);    
+	},    
+	parser: function(s) {
+		if (!s)    
+    		return new Date();    
+    	var arr = s.split(&#39;-&#39;);    
+    	return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);    
+	},    
+	formatter: function(d) {    
+		var month = d.getMonth();  
+		if(month&lt;=10){  
+			month = &quot;0&quot;+month;  
+		}  
+		if (d.getMonth() == 0) {    
+			return d.getFullYear()-1 + &#39;-&#39; + 12;    
+		} else {    
+			return d.getFullYear() + &#39;-&#39; + month;    
+		}    
+	}
+});   </code></pre>  </p>
+<p>最终的效果如下图所示：<br><img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" alt="example" title="选择月份"></p>
+
             </div>
             <hr>
 
@@ -521,13 +558,13 @@
                 <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/">
                     <div class="card-image">
                         
-                        <img src="/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/images/image1.png" class="responsive-img" alt="easyui时间控件-选择月份">
+                        <img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" class="responsive-img" alt="easyui时间控件-选择月份">
                         
                         <span class="card-title">easyui时间控件-选择月份</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary"></div>
+                    <div class="summary">easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、form</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-26
@@ -536,8 +573,8 @@
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java/" class="post-category" target="_blank">
-                                    java
+                            <a href="/categories/easyui/" class="post-category" target="_blank">
+                                    easyui
                                 </a>
                             
                             
@@ -548,12 +585,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java/" target="_blank">
-                        <span class="chip bg-color">java</span>
+                    <a href="/tags/easyui/" target="_blank">
+                        <span class="chip bg-color">easyui</span>
                     </a>
                     
-                    <a href="/tags/design/" target="_blank">
-                        <span class="chip bg-color">design</span>
+                    <a href="/tags/datebox/" target="_blank">
+                        <span class="chip bg-color">datebox</span>
                     </a>
                     
                 </div>
@@ -574,7 +611,7 @@
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个j</div>
+                    <div class="summary">easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，在显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个js</div>
                     <div class="publish-info">
                             <span class="publish-date">
                                 <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-23

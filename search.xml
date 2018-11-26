@@ -7,21 +7,21 @@
       <link href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/"/>
       <url>/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h3><span id="easyui-datebox">easyui-datebox</span></h3><p>截止到目前的版本（<a href="http://www.jeasyui.com/demo/main/index.php?plugin=DateBox" target="_blank" rel="noopener">1.6.10</a>）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。<br>下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、formatter方法。</p><p>首先，写一个时间输入框：<br><code>&lt;input class=&quot;easyui-datebox&quot; id=&quot;monthSpan&quot; style=&quot;width:150px;&quot;data-options=&quot;editable:false&quot;&gt;</code><br>然后，在javascript代码中，加入：<br><pre><code> var p = $(&#39;#monthSpan&#39;).datebox(&#39;panel&#39;),tds = false,span = p.find(&#39;span.calendar-text&#39;);$(&#39;#monthSpan&#39;).datebox({    onShowPanel: function() {span.trigger(&#39;click&#39;);if (!tds)    setTimeout(function() {tds = p.find(&#39;div.calendar-menu-month-inner td&#39;);               tds.click(function(e) {                       e.stopPropagation();                var year = &#x2F;\d{4}&#x2F;.exec(span.html())[0], month = parseInt($(this).attr(&#39;abbr&#39;), 10) + 1;                       $(&#39;#monthSpan&#39;).datebox(&#39;hidePanel&#39;).datebox(&#39;setValue&#39;, year + &#39;-&#39; + month);               });    }, 0);    },    parser: function(s) {if (!s)        return new Date();        var arr = s.split(&#39;-&#39;);        return new Date(parseInt(arr[0], 10), parseInt(arr[1], 10) - 1, 1);    },    formatter: function(d) {    var month = d.getMonth();  if(month&lt;=10){  month = &quot;0&quot;+month;  }  if (d.getMonth() == 0) {    return d.getFullYear()-1 + &#39;-&#39; + 12;    } else {    return d.getFullYear() + &#39;-&#39; + month;    }    }});   </code></pre>  </p><p>最终的效果如下图所示：<br><img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" alt="example" title="选择月份"></p>]]></content>
       
       
       <categories>
           
-          <category> java </category>
+          <category> easyui </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> java </tag>
+            <tag> easyui </tag>
             
-            <tag> design </tag>
+            <tag> datebox </tag>
             
         </tags>
       
@@ -32,7 +32,7 @@
       <link href="/2018/11/23/easyui-zhe-zhao/"/>
       <url>/2018/11/23/easyui-zhe-zhao/</url>
       
-        <content type="html"><![CDATA[<h3><span id="easyui的页面加载问题">easyui的页面加载问题</span></h3><p>在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！<br><img src="/2018/11/23/easyui-zhe-zhao/images/2016322722279139.jpg" alt="日了狗" title="日了狗"><br>此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。<br><img src="/2018/11/23/easyui-zhe-zhao/images/108f3e73c794eba2555d2834272f0836.gif" alt="loading" title="loading"><br>只需要在页面中引入一个js脚本就可以了，不需其他任何操作，脚本内容如下：<br><pre><code> &#x2F;&#x2F;获取浏览器页面可见高度和宽度 var _PageHeight = document.documentElement.clientHeight, _PageWidth = document.documentElement.clientWidth; &#x2F;&#x2F;计算loading框距离顶部和左部的距离（loading框的宽度为215px，高度为61px）var _LoadingTop = _PageHeight &gt; 61 ? (_PageHeight - 61) &#x2F; 2 : 0, _LoadingLeft = _PageWidth &gt; 215 ? (_PageWidth - 215) &#x2F; 2 : 0; &#x2F;&#x2F;加载gif地址var Loadimagerul=&quot;..&#x2F;commons&#x2F;img&#x2F;base_loading.gif&quot;;&#x2F;&#x2F;在页面未加载完毕之前显示的loading Html自定义内容var _LoadingHtml = &#39;&lt;div id=&quot;loadingDiv&quot;  style=&quot;position:absolute;left:0;width:100%;height:&#39; + _PageHeight +  &#39;px;top:0;background:#f3f8ff;opacity:1;filter:alpha(opacity=80);z-index:10000;&quot;&gt;&#39;+&#39;&lt;div style=&quot;position: absolute; cursor1: wait; left: &#39; + _LoadingLeft + &#39;px; top:&#39; + _LoadingTop + &#39;px; width:100px;; height: 57px; line-height: 57px; padding-left: 50px; &#39;+&#39;padding-right: 5px; background: #fff url(&#39;+Loadimagerul+&#39;) no-repeat scroll 5px 12px; border: 2px &#39;+&#39;solid #95B8E7; color: #696969; font-family:\&#39;Microsoft YaHei\&#39;;&quot;&gt;加载中...&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#39;;&#x2F;&#x2F;呈现loading效果 document.write(_LoadingHtml);&#x2F;&#x2F;监听加载状态改变document.onreadystatechange = completeLoading; &#x2F;&#x2F;加载状态为complete时移除loading效果function completeLoading() {if (document.readyState == &quot;complete&quot;) { var loadingMask = document.getElementById(&#39;loadingDiv&#39;); loadingMask.parentNode.removeChild(loadingMask); } }</code></pre><br>有没有一种很容易的感觉？  </p><p>不过，需要注意的是：<br>当页面加载的内容过多时，页面停留在loading的时间会很长，影响体验；此时应该考虑使用懒加载。</p>]]></content>
+        <content type="html"><![CDATA[<h3><span id="easyui的页面加载问题">easyui的页面加载问题</span></h3><p>在用easyui做页面的过程中，总是会出现页面加载慢，在显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！<br><img src="/2018/11/23/easyui-zhe-zhao/images/2016322722279139.jpg" alt="日了狗" title="日了狗"><br>此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。<br><img src="/2018/11/23/easyui-zhe-zhao/images/108f3e73c794eba2555d2834272f0836.gif" alt="loading" title="loading"><br>只需要在页面中引入一个js脚本就可以了，不需其他任何操作，脚本内容如下：<br><pre><code> &#x2F;&#x2F;获取浏览器页面可见高度和宽度 var _PageHeight = document.documentElement.clientHeight, _PageWidth = document.documentElement.clientWidth; &#x2F;&#x2F;计算loading框距离顶部和左部的距离（loading框的宽度为215px，高度为61px）var _LoadingTop = _PageHeight &gt; 61 ? (_PageHeight - 61) &#x2F; 2 : 0, _LoadingLeft = _PageWidth &gt; 215 ? (_PageWidth - 215) &#x2F; 2 : 0; &#x2F;&#x2F;加载gif地址var Loadimagerul=&quot;..&#x2F;commons&#x2F;img&#x2F;base_loading.gif&quot;;&#x2F;&#x2F;在页面未加载完毕之前显示的loading Html自定义内容var _LoadingHtml = &#39;&lt;div id=&quot;loadingDiv&quot;  style=&quot;position:absolute;left:0;width:100%;height:&#39; + _PageHeight +  &#39;px;top:0;background:#f3f8ff;opacity:1;filter:alpha(opacity=80);z-index:10000;&quot;&gt;&#39;+&#39;&lt;div style=&quot;position: absolute; cursor1: wait; left: &#39; + _LoadingLeft + &#39;px; top:&#39; + _LoadingTop + &#39;px; width:100px;; height: 57px; line-height: 57px; padding-left: 50px; &#39;+&#39;padding-right: 5px; background: #fff url(&#39;+Loadimagerul+&#39;) no-repeat scroll 5px 12px; border: 2px &#39;+&#39;solid #95B8E7; color: #696969; font-family:\&#39;Microsoft YaHei\&#39;;&quot;&gt;加载中...&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#39;;&#x2F;&#x2F;呈现loading效果 document.write(_LoadingHtml);&#x2F;&#x2F;监听加载状态改变document.onreadystatechange = completeLoading; &#x2F;&#x2F;加载状态为complete时移除loading效果function completeLoading() {if (document.readyState == &quot;complete&quot;) { var loadingMask = document.getElementById(&#39;loadingDiv&#39;); loadingMask.parentNode.removeChild(loadingMask); } }</code></pre><br>有没有一种很容易的感觉？  </p><p>不过，需要注意的是：<br>当页面加载的内容过多时，页面停留在loading的时间会很长，影响体验；此时应该考虑使用懒加载。</p>]]></content>
       
       
       <categories>
