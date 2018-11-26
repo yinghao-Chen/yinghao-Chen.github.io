@@ -5,8 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="easyui遮罩, 不好听的博客">
-    <meta name="description" content="easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个j">
+    <meta name="keywords" content="easyui时间控件-选择月份, 不好听的博客">
+    <meta name="description" content="easyui时间控件-选择月份 | 不好听的博客">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>easyui遮罩 | 不好听的博客</title>
+    <title>easyui时间控件-选择月份 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -189,13 +189,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/11/23/easyui-zhe-zhao/images/easyui.PNG')">
+<div class="bg-cover post-cover" style="background-image: url('/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/images/image1.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        easyui遮罩
+                        easyui时间控件-选择月份
                     </div>
                 </div>
             </div>
@@ -306,12 +306,12 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/easyui/" target="_blank">
-                    <span class="chip bg-color">easyui</span>
+                <a href="/tags/java/" target="_blank">
+                    <span class="chip bg-color">java</span>
                 </a>
                 
-                <a href="/tags/遮罩/" target="_blank">
-                    <span class="chip bg-color">遮罩</span>
+                <a href="/tags/design/" target="_blank">
+                    <span class="chip bg-color">design</span>
                 </a>
                 
             </div>
@@ -321,48 +321,22 @@
                 <span class="post-cate">
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/easyui/" class="post-category" target="_blank">
-                        easyui
+                    <a href="/categories/java/" class="post-category" target="_blank">
+                        java
                     </a>
                     
                 </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-11-23
+                    <i class="fa fa-clock-o fa-fw"></i>2018-11-26
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3><span id="easyui的页面加载问题">easyui的页面加载问题</span></h3><p>在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！<br><img src="/2018/11/23/easyui-zhe-zhao/images/2016322722279139.jpg" alt="日了狗" title="日了狗"><br>此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。<br><img src="/2018/11/23/easyui-zhe-zhao/images/108f3e73c794eba2555d2834272f0836.gif" alt="loading" title="loading"><br>只需要在页面中引入一个js脚本就可以了，不需其他任何操作，脚本内容如下：<br><pre><code> 
-&#x2F;&#x2F;获取浏览器页面可见高度和宽度 
-var _PageHeight = document.documentElement.clientHeight, _PageWidth = document.documentElement.clientWidth; 
-&#x2F;&#x2F;计算loading框距离顶部和左部的距离（loading框的宽度为215px，高度为61px）
-var _LoadingTop = _PageHeight &gt; 61 ? (_PageHeight - 61) &#x2F; 2 : 0, _LoadingLeft = _PageWidth &gt; 215 ? (_PageWidth - 215) &#x2F; 2 : 0; 
-&#x2F;&#x2F;加载gif地址
-var Loadimagerul=&quot;..&#x2F;commons&#x2F;img&#x2F;base_loading.gif&quot;;
-&#x2F;&#x2F;在页面未加载完毕之前显示的loading Html自定义内容
-var _LoadingHtml = &#39;&lt;div id=&quot;loadingDiv&quot;  style=&quot;position:absolute;left:0;width:100%;height:&#39; + 	
-	_PageHeight +  &#39;px;top:0;background:#f3f8ff;opacity:1;filter:alpha	(opacity=80);z-index:10000;&quot;&gt;&#39;+
-	&#39;&lt;div style=&quot;position: absolute; 	cursor1: wait; left: &#39; + _LoadingLeft + &#39;px; top:&#39; + 	
-	_LoadingTop + &#39;px; width:100px;; height: 57px; line-height: 	57px; padding-left: 50px; &#39;+
-	&#39;padding-right: 5px; background: #fff 	url(&#39;+Loadimagerul+&#39;) no-repeat scroll 5px 12px; border: 2px 	&#39;+
-	&#39;solid #95B8E7; color: #696969; font-family:\&#39;Microsoft YaHei	\&#39;;&quot;&gt;加载中...&lt;&#x2F;div&gt;&lt;&#x2F;div&gt;&#39;;
-&#x2F;&#x2F;呈现loading效果 
-document.write(_LoadingHtml);
-&#x2F;&#x2F;监听加载状态改变
-document.onreadystatechange = completeLoading; 
-&#x2F;&#x2F;加载状态为complete时移除loading效果
-function completeLoading() {
-	if (document.readyState == &quot;complete&quot;) { 
-			var loadingMask = document.getElementById(&#39;loadingDiv&#39;); 
-			loadingMask.parentNode.removeChild(loadingMask);
-	 } 
-}</code></pre><br>有没有一种很容易的感觉？  </p>
-<p>不过，需要注意的是：<br>当页面加载的内容过多时，页面停留在loading的时间会很长，影响体验；此时应该考虑使用懒加载。</p>
-
+                
             </div>
             <hr>
 
@@ -500,7 +474,7 @@ function completeLoading() {
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.yinghao-chen.top" class="b-link-green">不好听的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/23/easyui-zhe-zhao/" class="b-link-green">easyui遮罩</a>
+                    <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/" class="b-link-green">easyui时间控件-选择月份</a>
                 </p>
             </div>
         </div>
@@ -522,7 +496,7 @@ function completeLoading() {
         repo: 'yinghao-Chen.github.io',
         owner: 'yinghao-Chen',
         admin: "yinghao-Chen",
-        id: '2018-11-23T20-27-22',
+        id: '2018-11-26T19-30-14',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -542,7 +516,7 @@ function completeLoading() {
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/">
                     <div class="card-image">
@@ -555,9 +529,9 @@ function completeLoading() {
                 <div class="card-content article-content">
                     <div class="summary"></div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-26
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-26
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -570,6 +544,7 @@ function completeLoading() {
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -590,27 +565,26 @@ function completeLoading() {
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/">
+                <a href="/2018/11/23/easyui-zhe-zhao/">
                     <div class="card-image">
                         
-                        <img src="/2018/11/17/fu-wu-qi-jian-kong-zhi-zabbix/images/image1.png" class="responsive-img" alt="服务器监控之zabbix">
+                        <img src="/2018/11/23/easyui-zhe-zhao/images/easyui.PNG" class="responsive-img" alt="easyui遮罩">
                         
-                        <span class="card-title">服务器监控之zabbix</span>
+                        <span class="card-title">easyui遮罩</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">前段时间有监控服务器主机、应用、交换机等的需求，所以对zabbix进行了学习，现在整理记录全过程。
-1.zabbix概述Zabbix由以下几个组件构成：1.1 zabbix_server: Zabbix server 是agent程序报告系</div>
+                    <div class="summary">easyui的页面加载问题在用easyui做页面的过程中，总是会出现页面加载慢，然后显示一堆乱七八糟的没渲染的页面后，才显示正常。是否会有一种日了狗的感觉？！此时，我们可以在页面上加上遮罩，页面加载完成之后，再显示。只需要在页面中引入一个j</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-17
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-23
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/zabbix/" class="post-category" target="_blank">
-                                    zabbix
+                            <a href="/categories/easyui/" class="post-category" target="_blank">
+                                    easyui
                                 </a>
                             
                             
@@ -620,12 +594,12 @@ function completeLoading() {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/zabbix/" target="_blank">
-                        <span class="chip bg-color">zabbix</span>
+                    <a href="/tags/easyui/" target="_blank">
+                        <span class="chip bg-color">easyui</span>
                     </a>
                     
-                    <a href="/tags/监控/" target="_blank">
-                        <span class="chip bg-color">监控</span>
+                    <a href="/tags/遮罩/" target="_blank">
+                        <span class="chip bg-color">遮罩</span>
                     </a>
                     
                 </div>
