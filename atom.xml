@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yinghao-chen.top/"/>
-  <updated>2018-11-26T11:48:35.863Z</updated>
+  <updated>2018-12-04T12:17:31.136Z</updated>
   <id>http://www.yinghao-chen.top/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初识python: 运行环境</title>
+    <link href="http://www.yinghao-chen.top/2018/12/04/chu-shi-python-yun-xing-huan-jing/"/>
+    <id>http://www.yinghao-chen.top/2018/12/04/chu-shi-python-yun-xing-huan-jing/</id>
+    <published>2018-12-04T11:50:31.000Z</published>
+    <updated>2018-12-04T12:17:31.136Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;此过程为&lt;font face=&quot;微软雅黑&quot;&gt;windows7&lt;/font&gt;上的开发环境  &lt;/p&gt;
+&lt;p&gt;安装&lt;font color=&quot;#0099ff&quot; face=&quot;微软雅黑&quot;&gt;&lt;a href=&quot;https://www.anaconda.com/&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://www.yinghao-chen.top/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://www.yinghao-chen.top/tags/python/"/>
+    
+  </entry>
   
   <entry>
     <title>easyui时间控件-选择月份</title>
