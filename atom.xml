@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yinghao-chen.top/"/>
-  <updated>2018-12-04T12:17:31.136Z</updated>
+  <updated>2018-12-08T11:44:45.290Z</updated>
   <id>http://www.yinghao-chen.top/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>初识python-爬取网页文字和图片</title>
+    <link href="http://www.yinghao-chen.top/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/"/>
+    <id>http://www.yinghao-chen.top/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/</id>
+    <published>2018-12-08T11:22:58.000Z</published>
+    <updated>2018-12-08T11:44:45.290Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;学习了一下用python爬取网络上的文字和图片，在此记录一下。  &lt;/p&gt;
+&lt;h3&gt;&lt;span id=&quot;1下载笔趣看网页上的小说&quot;&gt;1.下载“&lt;font color=&quot;#0099ff&quot; face=&quot;微软雅黑&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="python" scheme="http://www.yinghao-chen.top/categories/python/"/>
+    
+    
+      <category term="python" scheme="http://www.yinghao-chen.top/tags/python/"/>
+    
+      <category term="爬虫" scheme="http://www.yinghao-chen.top/tags/%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>初识python: 运行环境</title>

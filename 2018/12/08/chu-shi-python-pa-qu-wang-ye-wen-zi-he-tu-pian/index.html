@@ -5,10 +5,12 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="初识python: 运行环境, 不好听的博客">
-    <meta name="description" content="此过程为windows7上的开发环境  
-安装anaconda(开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项)
-用pip命令安装开发Web App需要的第三方库：异步框架aiohttp：pip i">
+    <meta name="keywords" content="初识python-爬取网页文字和图片, 不好听的博客">
+    <meta name="description" content="学习了一下用python爬取网络上的文字和图片，在此记录一下。  
+1.下载“笔趣看”网页上的小说代码如下：# __*__ coding:UTF-8 __*__
+
+import requests
+from bs4 import Beauti">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +18,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>初识python: 运行环境 | 不好听的博客</title>
+    <title>初识python-爬取网页文字和图片 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -191,13 +193,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/12/04/chu-shi-python-yun-xing-huan-jing/images/timg.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/image1.jpg')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        初识python: 运行环境
+                        初识python-爬取网页文字和图片
                     </div>
                 </div>
             </div>
@@ -312,6 +314,10 @@
                     <span class="chip bg-color">python</span>
                 </a>
                 
+                <a href="/tags/爬虫/" target="_blank">
+                    <span class="chip bg-color">爬虫</span>
+                </a>
+                
             </div>
             
             <div class="post-info">
@@ -327,21 +333,185 @@
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-04
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-08
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>此过程为<font face="微软雅黑">windows7</font>上的开发环境  </p>
-<p>安装<font color="#0099ff" face="微软雅黑"><a href="https://www.anaconda.com/" target="_blank" rel="noopener">anaconda</a></font>(开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项)</p>
-<p>用pip命令安装开发Web App需要的第三方库：<br>异步框架aiohttp：<pre><code>pip install aiohttp</code></pre> (下同)<br>前端模板引擎jinja2：pip3 install jinja2<br>MySQL的Python异步驱动程序aiomysql：pip3 install aiomysql</p>
-<h3><span id="运行环境">运行环境</span></h3><p><font face="微软雅黑">virtualenv</font>：<br>每个应用可能需要各自拥有一套“独立”的Python运行环境。virtualenv就是用来为一个应用创建一套“隔离”的Python运行环境。<br><strong>1.安装虚拟运行环境  </strong><br><pre><code>pip install virtualenv</code></pre><br><strong>2.cd进入工作目录，创建虚拟运行环境</strong><br><pre><code>virtualenv --no-site-packages venv</code></pre><br> 参数<font color="#0099ff">–no-site-packages</font>表示不带任何第三方包的“干净”的Python运行环境<br> dir命令可以查看当前目录<br><strong>3.启动环境</strong><br>进入venv\Scripts下，执行activate.bat启动环境(call activate.bat)后就可以安装各种包了，执行deactivate.bat可以关闭环境</p>
-<p>启动后，注意到命令提示符变了，有个(<font color="red">venv</font>)前缀，表示当前环境是一个名为<font color="red">venv</font>的Python环境。<br>在<font color="red">venv</font>环境下，用<font color="#0099ff">pip</font>安装的包都被安装到<font color="red">venv</font>这个环境下，系统Python环境不受任何影响。也就是说，<font color="red">venv</font>环境是专门针对这个应用创建的。<br>如果使用idea工具，如<font color="#0099ff">pycharm</font>等，以上步骤可以省略，创建项目勾选相应的选项后，会自动创建项目独立的运行环境</p>
-<p><strong>问题与细节</strong><br>每次需要启动虚拟环境的时候都需要进入虚拟环境的文件夹的Scripy的目录下，非常不方便，可以将Scripts的路径添加到系统环境变量中。<br>如果系统还要安装其他的python版本，如python2.7.13；将其路径添加到系统环境变量后，进入安装文件目录，将python.exe文件改为python2.exe文件，防止命令冲突；<br>如果同时存在多个python版本，那么pip也有多个版本，这个时候使用pip安装需要指定python版本。<br><pre><code>  
-python -m pip install xxx   # python3版本安装包  
-python2 -m pip install xxx  # python2版本安装包  </code></pre><br>每次添加了系统环境变量以后，需要关闭当前的cmd窗口，重新启动一个窗口才会生效。</p>
+                <p>学习了一下用python爬取网络上的文字和图片，在此记录一下。  </p>
+<h3><span id="1下载笔趣看网页上的小说">1.下载“<font color="#0099ff" face="微软雅黑"><a href="https://www.biqukan.com/" target="_blank" rel="noopener">笔趣看</a></font>”网页上的小说</span></h3><p>代码如下：<br><pre><code># __*__ coding:UTF-8 __*__
+
+import requests
+from bs4 import BeautifulSoup
+
+&quot;&quot;&quot;
+下载 笔趣看 小说
+&quot;&quot;&quot;
+
+
+class DownloadBook(object):
+
+    def __init__(self):
+        self.server = &#39;https:&#x2F;&#x2F;www.biqukan.com&#39;
+        self.target = &#39;https:&#x2F;&#x2F;www.biqukan.com&#x2F;20_20289&#x2F;&#39; 	# 书目在网站的地址
+        self.name = &#39;调教大宋.txt&#39;  # 书名
+        self.count = 0     # 章节数
+        self.names = []     # 章节名
+        self.urls = []      # 章节链接
+
+    &quot;&quot;&quot;
+    获取所有章节的下载链接
+    &quot;&quot;&quot;
+    def get_all_down_url(self):
+        req = requests.get(url=self.target)
+        bf = BeautifulSoup(req.text)
+        texts = bf.find_all(&#39;div&#39;, class_=&#39;listmain&#39;)
+        bf2 = BeautifulSoup(str(texts[0]))
+        names = bf2.find_all(&#39;a&#39;)
+        real = names[12: len(names)-7]
+        self.count = len(real)
+        for name in real:
+            self.names.append(name.string)
+            self.urls.append(self.server + name.get(&#39;href&#39;))
+
+    &quot;&quot;&quot;
+    获取章节内容
+    &quot;&quot;&quot;
+    def get_every_content(self, target):
+        req = requests.get(url=target)
+        bf = BeautifulSoup(req.text)
+        texts = bf.find_all(&#39;div&#39;, class_=&#39;showtxt&#39;)
+        if len(texts) &gt; 0 and texts[0].text:
+            return texts[0].text.replace(&#39;\xa0&#39; * 8, &#39;\n&#39;)
+        else:
+            return &#39;&#39;
+
+    &quot;&quot;&quot;
+    写入文件
+    &quot;&quot;&quot;
+    def writer(self, path, name, text):
+        with open(path, &#39;a&#39;, encoding=&#39;utf-8&#39;) as f:
+            f.write(name + &#39;\n&#39;)
+            f.writelines(text)
+            f.write(&#39;\n\n&#39;)
+
+
+if __name__ == &#39;__main__&#39;:
+    obj = DownloadBook()
+    obj.get_all_down_url()
+    print(&#39;%s开始下载：&#39;, obj.name)
+    for i in range(obj.count):
+        obj.writer(obj.name, obj.names[i], obj.get_every_content(obj.urls[i]))
+        print(&#39;\r已下载：%.3f %%&#39; % float(i &#x2F; obj.count * 100), end=&#39;&#39;)
+    print(&#39;%s下载完成。&#39;, obj.name)
+	</code></pre><br>结果如下：<br><img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/11.png" alt="结果" title="结果">  </p>
+<p><br><br></p>
+<h3><span id="2爬取彼岸桌面网站上的壁纸">2.爬取“<font color="#0099ff" face="微软雅黑"><a href="http://www.netbian.com/" target="_blank" rel="noopener">彼岸桌面</a></font>”网站上的壁纸</span></h3><p>代码如下：<br><pre><code> 
+# __*__ coding:UTF-8 __*__
+
+import requests
+import os
+import time
+
+from bs4 import BeautifulSoup
+from contextlib import closing
+
+&quot;&quot;&quot;
+下载 彼岸桌面 壁纸
+&quot;&quot;&quot;
+
+
+class DownloadPic(object):
+
+    def __init__(self):
+        self.server = &#39;http:&#x2F;&#x2F;www.netbian.com&#x2F;&#39;
+        self.target = &#39;http:&#x2F;&#x2F;www.netbian.com&#x2F;&#39;
+        self.img_server = &#39;http:&#x2F;&#x2F;img.netbian.com&#x2F;&#39;
+        self.urls = []      # 图片列表解析的地址
+        self.big_urls = []     # 图片的大图地址
+        self.real_urls = []     # 图片下载地址
+        self.names = []     # 图片名
+
+    &quot;&quot;&quot;
+    获取每页url集合
+    &quot;&quot;&quot;
+    def get_url_list(self):
+        req = requests.get(url=self.target)
+        bf = BeautifulSoup(req.text)
+        texts = bf.find_all(&#39;div&#39;, class_=&#39;list&#39;)
+        if len(texts) &lt;= 0:
+            return
+        else:
+            bf2 = BeautifulSoup(str(texts[0]))
+            urls = bf2.find_all(&#39;a&#39;)
+            for k in range(len(urls)):
+                if k % 2 == 0 and k != 4:       # 每个url重复，且第三个图片（即i=(4,5)时是广告）
+                    self.urls.append(self.server + urls[k].get(&#39;href&#39;))
+
+    &quot;&quot;&quot;
+    获取每张图片的 大图浏览页的地址
+    &quot;&quot;&quot;
+    def get_big_url(self):
+        for url in self.urls:
+            req = requests.get(url=url)
+            bf = BeautifulSoup(req.text)
+            texts = bf.find_all(&#39;div&#39;, class_=&#39;pic&#39;)
+            bf2 = BeautifulSoup(str(texts[0]))
+            urls = bf2.find_all(&#39;a&#39;)
+            self.big_urls.append(self.server + urls[0].get(&#39;href&#39;))
+
+    &quot;&quot;&quot;
+    获取图片的下载地址
+    &quot;&quot;&quot;
+    def get_real_urls(self):
+        for url in self.big_urls:
+            req = requests.get(url=url)
+            bf = BeautifulSoup(req.text)
+            texts = bf.find_all(&#39;td&#39;, align=&#39;left&#39;)
+            bf2 = BeautifulSoup(str(texts[0]))
+            urls = bf2.find_all(&#39;a&#39;)
+            self.real_urls.append(urls[0].get(&#39;href&#39;))
+            self.names.append(urls[0].get(&#39;title&#39;))
+
+    &quot;&quot;&quot;
+    下载图片
+    &quot;&quot;&quot;
+    def download(self):
+        path = os.path.abspath(&#39;.&#39;)
+        path2 = os.path.join(path, &#39;pic&#39;)
+        if os.path.isdir(path2):
+            pass
+        else:
+            os.mkdir(path2)
+        for j in range(len(self.real_urls)):
+            time.sleep(1)
+            pu = os.path.join(path2, self.names[j]+&#39;.jpg&#39;)
+            print(self.real_urls[j])
+            with closing(requests.get(url=self.real_urls[j], stream=True, verify=False)) as r:
+                with open(pu, &#39;ab+&#39;) as f:
+                    for chunk in r.iter_content(chunk_size=1024):
+                        if chunk:
+                            f.write(chunk)
+                            f.flush()
+
+
+if __name__ == &#39;__main__&#39;:
+    for i in range(3):  # 爬取3页
+        obj = DownloadPic()
+        if i &gt; 0:
+            index = i+1
+            obj.target = obj.target + &#39;index_&#39; + str(index) + &#39;.htm&#39;
+        else:
+            pass
+        obj.get_url_list()
+        obj.get_big_url()
+        obj.get_real_urls()
+        obj.download()
+		</code></pre><br>结果如下：<br><img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/12.png" alt="结果" title="结果">  </p>
+<p><br></p>
+<p>Tip: 以上内容仅用于学习！</p>
 
             </div>
             <hr>
@@ -480,7 +650,7 @@ python2 -m pip install xxx  # python2版本安装包  </code></pre><br>每次添
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.yinghao-chen.top" class="b-link-green">不好听的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/04/chu-shi-python-yun-xing-huan-jing/" class="b-link-green">初识python: 运行环境</a>
+                    <a href="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/" class="b-link-green">初识python-爬取网页文字和图片</a>
                 </p>
             </div>
         </div>
@@ -502,7 +672,7 @@ python2 -m pip install xxx  # python2版本安装包  </code></pre><br>每次添
         repo: 'yinghao-Chen.github.io',
         owner: 'yinghao-Chen',
         admin: "yinghao-Chen",
-        id: '2018-12-04T19-50-31',
+        id: '2018-12-08T19-22-58',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -522,7 +692,7 @@ python2 -m pip install xxx  # python2版本安装包  </code></pre><br>每次添
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/">
                     <div class="card-image">
@@ -539,9 +709,9 @@ python2 -m pip install xxx  # python2版本安装包  </code></pre><br>每次添
 import requests
 from bs4 import Beauti</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -554,6 +724,7 @@ from bs4 import Beauti</div>
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -574,26 +745,28 @@ from bs4 import Beauti</div>
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/">
+                <a href="/2018/12/04/chu-shi-python-yun-xing-huan-jing/">
                     <div class="card-image">
                         
-                        <img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" class="responsive-img" alt="easyui时间控件-选择月份">
+                        <img src="/2018/12/04/chu-shi-python-yun-xing-huan-jing/images/timg.jpg" class="responsive-img" alt="初识python: 运行环境">
                         
-                        <span class="card-title">easyui时间控件-选择月份</span>
+                        <span class="card-title">初识python: 运行环境</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、form</div>
+                    <div class="summary">此过程为windows7上的开发环境  
+安装anaconda(开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项)
+用pip命令安装开发Web App需要的第三方库：异步框架aiohttp：pip i</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-11-26
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/easyui/" class="post-category" target="_blank">
-                                    easyui
+                            <a href="/categories/python/" class="post-category" target="_blank">
+                                    python
                                 </a>
                             
                             
@@ -603,12 +776,8 @@ from bs4 import Beauti</div>
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/easyui/" target="_blank">
-                        <span class="chip bg-color">easyui</span>
-                    </a>
-                    
-                    <a href="/tags/datebox/" target="_blank">
-                        <span class="chip bg-color">datebox</span>
+                    <a href="/tags/python/" target="_blank">
+                        <span class="chip bg-color">python</span>
                     </a>
                     
                 </div>
