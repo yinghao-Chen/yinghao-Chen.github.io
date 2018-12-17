@@ -5,8 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="easyui时间控件-选择月份, 不好听的博客">
-    <meta name="description" content="easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、form">
+    <meta name="keywords" content="easyui控件, 不好听的博客">
+    <meta name="description" content="1.easyui-datebox截止到目前的版本（1.6.10）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、fo">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>easyui时间控件-选择月份 | 不好听的博客</title>
+    <title>easyui控件 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -189,13 +189,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png')">
+<div class="bg-cover post-cover" style="background-image: url('/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/easyui.PNG')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        easyui时间控件-选择月份
+                        easyui控件
                     </div>
                 </div>
             </div>
@@ -336,7 +336,7 @@
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3><span id="easyui-datebox">easyui-datebox</span></h3><p>截止到目前的版本（<a href="http://www.jeasyui.com/demo/main/index.php?plugin=DateBox" target="_blank" rel="noopener">1.6.10</a>）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。<br>下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、formatter方法。</p>
+                <h3><span id="1easyui-datebox">1.easyui-datebox</span></h3><p>截止到目前的版本（<a href="http://www.jeasyui.com/demo/main/index.php?plugin=DateBox" target="_blank" rel="noopener">1.6.10</a>）,easyui并没有提供一种选择月份的时间控件，但是在项目中却会经常有此类需求。<br>下面提供一种解决办法，这种实现方式利用了easyui的onShowPanel、parser、formatter方法。</p>
 <p>首先，写一个时间输入框：<br><code>&lt;input class=&quot;easyui-datebox&quot; id=&quot;monthSpan&quot; style=&quot;width:150px;&quot;data-options=&quot;editable:false&quot;&gt;</code><br>然后，在javascript代码中，加入：<br><pre><code> 
 var p = $(&#39;#monthSpan&#39;).datebox(&#39;panel&#39;),
 	tds = false,
@@ -372,7 +372,79 @@ $(&#39;#monthSpan&#39;).datebox({
 		}    
 	}
 });   </code></pre>  </p>
-<p>最终的效果如下图所示：<br><img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" alt="example" title="选择月份"></p>
+<p>最终的效果如下图所示：<br><img src="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/images/1126.png" alt="example" title="选择月份">   </p>
+<h3><span id="2easyui-datetimebox">2.easyui-datetimebox</span></h3><p>下面修改控件默认的按钮事件：<br> 先写html：<br> <code>&lt;input id=&quot;beginTime&quot; class=&quot;easyui-datetimebox&quot;  editable=false /&gt;</code><br> 再写js事件：<br><pre><code> 
+ setJinTianTime(&#39;#beginTime&#39;);
+ 
+function setJinTianTime(dom){
+	var today = function (){
+	    &#x2F;&#x2F;当前的时间
+	    var dd = new Date();
+	    var y = dd.getFullYear();  
+	    var m = dd.getMonth()+1;  
+	    var d = dd.getDate(); 
+	    var str = y+&#39;-&#39;+(m&lt;10?(&#39;0&#39;+m):m)+&#39;-&#39;+(d&lt;10?(&#39;0&#39;+d):d)+&#39; 00:00:00&#39;; 
+	    return str; 
+	};
+	
+	var buttons = $.extend([], $.fn.datetimebox.defaults.buttons);
+	buttons.splice(0, 1, 
+			{text: &#39;今天&#39;, handler: function(target){
+				var date = today();
+				$(target).datetimebox(&#39;setValue&#39;, date).datetimebox(&#39;setText&#39;, date).datetimebox(&quot;hidePanel&quot;);
+			}
+	});
+	$(dom).datetimebox({buttons: buttons});
+}  </code></pre>   </p>
+<h3><span id="3easyui-combogrid">3.easyui combogrid</span></h3><p> 定义多列搜索事件，例子如下：<br><pre><code> 
+var startDevs = ...(先初始化数据);
+
+$(dom).combogrid({
+	panelWidth:300,
+	idField: &#39;deviceCode&#39;,
+	textField: &#39;deviceName&#39;,
+	columns:[[
+		{field:&#39;deviceName&#39;,title:&#39;设备名称&#39;,width:200},
+		{field:&#39;ip&#39;,title:&#39;设备IP&#39;,width:120}
+	]],
+	onSelect: function(rowIndex, rowData){ },
+	keyHandler: {
+		up: function(e){},
+		down: function(e){},
+		left: function(e){},
+		right: function(e){},
+		enter: function(e){
+			if(e.keyCode == 13) {
+				var value = $(e.target).val();
+				doSearch(value, startDevs, [&quot;deviceName&quot;,&quot;ip&quot;], $(this));
+			}
+		},
+		query: function(q,e){}
+	}
+});
+&#x2F;&#x2F;加载静态数据
+$(dom).combogrid(&quot;grid&quot;).datagrid(&#39;loadData&#39;, startDevs);  
+
+&#x2F;&#x2F;搜索名称和ip
+function doSearch(q, data, searchList, ele){
+	ele.combogrid(&#39;grid&#39;).datagrid(&#39;loadData&#39;, []);
+	if(q == &quot;&quot;){
+		ele.combogrid(&#39;grid&#39;).datagrid(&#39;loadData&#39;, data);
+		return;
+	}
+	var rows = [];
+	$.each(data, function(i, obj){
+		for(var p in searchList){
+			var v = obj[searchList[p]];
+			if (!!v &amp;&amp; v.toString().indexOf(q) &gt;= 0){
+				rows.push(obj);
+				break;
+			}
+		}
+	});
+	ele.combogrid(&#39;grid&#39;).datagrid(&#39;loadData&#39;, rows);
+	ele.combogrid(&#39;showPanel&#39;);
+}</code></pre></p>
 
             </div>
             <hr>
@@ -511,7 +583,7 @@ $(&#39;#monthSpan&#39;).datebox({
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.yinghao-chen.top" class="b-link-green">不好听的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/" class="b-link-green">easyui时间控件-选择月份</a>
+                    <a href="/2018/11/26/easyui-shi-jian-kong-jian-xuan-ze-yue-fen/" class="b-link-green">easyui控件</a>
                 </p>
             </div>
         </div>
