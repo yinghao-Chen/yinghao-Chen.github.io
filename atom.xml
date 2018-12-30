@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.yinghao-chen.top/"/>
-  <updated>2018-12-17T14:00:42.970Z</updated>
+  <updated>2018-12-30T07:06:04.420Z</updated>
   <id>http://www.yinghao-chen.top/</id>
   
   <author>
@@ -17,11 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>弄懂JVM</title>
+    <link href="http://www.yinghao-chen.top/2018/12/30/nong-dong-jvm/"/>
+    <id>http://www.yinghao-chen.top/2018/12/30/nong-dong-jvm/</id>
+    <published>2018-12-30T04:07:15.000Z</published>
+    <updated>2018-12-30T07:06:04.420Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3&gt;&lt;span id=&quot;1class-loader类加载器&quot;&gt;1.class Loader（类加载器）&lt;/span&gt;&lt;/h3&gt;&lt;p&gt;我们编写的java文件，编辑器会编译成&lt;font color=&quot;#0099ff&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="http://www.yinghao-chen.top/categories/java/"/>
+    
+    
+      <category term="jvm" scheme="http://www.yinghao-chen.top/tags/jvm/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初识python-爬取网页文字和图片</title>
     <link href="http://www.yinghao-chen.top/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/"/>
     <id>http://www.yinghao-chen.top/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/</id>
     <published>2018-12-08T11:22:58.000Z</published>
-    <updated>2018-12-17T14:00:42.970Z</updated>
+    <updated>2018-12-30T04:08:37.187Z</updated>
     
     <summary type="html">
     

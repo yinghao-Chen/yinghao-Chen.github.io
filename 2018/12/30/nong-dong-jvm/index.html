@@ -5,12 +5,8 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="初识python-爬取网页文字和图片, 不好听的博客">
-    <meta name="description" content="学习了一下用python爬取网络上的文字和图片，在此记录一下。  
-1.下载“笔趣看”网页上的小说代码如下：# __*__ coding:UTF-8 __*__
-
-import requests
-from bs4 import Beauti">
+    <meta name="keywords" content="弄懂JVM, 不好听的博客">
+    <meta name="description" content="1.class Loader（类加载器）我们编写的java文件，编辑器会编译成*.class的字节码文件；在我们执行代码时，会由类加载器将文件加载到运行时数据区（内存）中去执行。我们先来看一段简单的代码：public class Test ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +14,7 @@ from bs4 import Beauti">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>初识python-爬取网页文字和图片 | 不好听的博客</title>
+    <title>弄懂JVM | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -193,13 +189,13 @@ from bs4 import Beauti">
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/image1.jpg')">
+<div class="bg-cover post-cover" style="background-image: url('/2018/12/30/nong-dong-JVM/images/image1.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        初识python-爬取网页文字和图片
+                        弄懂JVM
                     </div>
                 </div>
             </div>
@@ -310,12 +306,8 @@ from bs4 import Beauti">
             
             <div class="article-tag">
                 
-                <a href="/tags/python/" target="_blank">
-                    <span class="chip bg-color">python</span>
-                </a>
-                
-                <a href="/tags/爬虫/" target="_blank">
-                    <span class="chip bg-color">爬虫</span>
+                <a href="/tags/jvm/" target="_blank">
+                    <span class="chip bg-color">jvm</span>
                 </a>
                 
             </div>
@@ -325,194 +317,44 @@ from bs4 import Beauti">
                 <span class="post-cate">
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/python/" class="post-category" target="_blank">
-                        python
+                    <a href="/categories/java/" class="post-category" target="_blank">
+                        java
                     </a>
                     
                 </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-08
+                    <i class="fa fa-clock-o fa-fw"></i>2018-12-30
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>学习了一下用python爬取网络上的文字和图片，在此记录一下。  </p>
-<h3><span id="1下载笔趣看网页上的小说">1.下载“<font color="#0099ff" face="微软雅黑"><a href="https://www.biqukan.com/" target="_blank" rel="noopener">笔趣看</a></font>”网页上的小说</span></h3><p>代码如下：<br><pre><code># __*__ coding:UTF-8 __*__
-
-import requests
-from bs4 import BeautifulSoup
-
-&quot;&quot;&quot;
-下载 笔趣看 小说
-&quot;&quot;&quot;
-
-
-class DownloadBook(object):
-
-    def __init__(self):
-        self.server = &#39;https:&#x2F;&#x2F;www.biqukan.com&#39;
-        self.target = &#39;https:&#x2F;&#x2F;www.biqukan.com&#x2F;20_20289&#x2F;&#39; 	# 书目在网站的地址
-        self.name = &#39;调教大宋.txt&#39;  # 书名
-        self.count = 0     # 章节数
-        self.names = []     # 章节名
-        self.urls = []      # 章节链接
-
-    &quot;&quot;&quot;
-    获取所有章节的下载链接
-    &quot;&quot;&quot;
-    def get_all_down_url(self):
-        req = requests.get(url=self.target)
-        bf = BeautifulSoup(req.text)
-        texts = bf.find_all(&#39;div&#39;, class_=&#39;listmain&#39;)
-        bf2 = BeautifulSoup(str(texts[0]))
-        names = bf2.find_all(&#39;a&#39;)
-        real = names[12: len(names)-7]
-        self.count = len(real)
-        for name in real:
-            self.names.append(name.string)
-            self.urls.append(self.server + name.get(&#39;href&#39;))
-
-    &quot;&quot;&quot;
-    获取章节内容
-    &quot;&quot;&quot;
-    def get_every_content(self, target):
-        req = requests.get(url=target)
-        bf = BeautifulSoup(req.text)
-        texts = bf.find_all(&#39;div&#39;, class_=&#39;showtxt&#39;)
-        if len(texts) &gt; 0 and texts[0].text:
-            return texts[0].text.replace(&#39;\xa0&#39; * 8, &#39;\n&#39;)
-        else:
-            return &#39;&#39;
-
-    &quot;&quot;&quot;
-    写入文件
-    &quot;&quot;&quot;
-    def writer(self, path, name, text):
-        with open(path, &#39;a&#39;, encoding=&#39;utf-8&#39;) as f:
-            f.write(name + &#39;\n&#39;)
-            f.writelines(text)
-            f.write(&#39;\n\n&#39;)
-
-
-if __name__ == &#39;__main__&#39;:
-    obj = DownloadBook()
-    obj.get_all_down_url()
-    print(&#39;%s开始下载：&#39;, obj.name)
-    for i in range(obj.count):
-        obj.writer(obj.name, obj.names[i], obj.get_every_content(obj.urls[i]))
-        print(&#39;\r已下载：%.3f %%&#39; % float(i &#x2F; obj.count * 100), end=&#39;&#39;)
-    print(&#39;%s下载完成。&#39;, obj.name)
-	</code></pre><br>结果如下：<br><img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/11.png" alt="结果" title="结果">  </p>
-<p><br><br></p>
-<h3><span id="2爬取彼岸桌面网站上的壁纸">2.爬取“<font color="#0099ff" face="微软雅黑"><a href="http://www.netbian.com/" target="_blank" rel="noopener">彼岸桌面</a></font>”网站上的壁纸</span></h3><p>代码如下：<br><pre><code> 
-# __*__ coding:UTF-8 __*__
-
-import requests
-import os
-import time
-
-from bs4 import BeautifulSoup
-from contextlib import closing
-
-&quot;&quot;&quot;
-下载 彼岸桌面 壁纸
-&quot;&quot;&quot;
-
-
-class DownloadPic(object):
-
-    def __init__(self):
-        self.server = &#39;http:&#x2F;&#x2F;www.netbian.com&#x2F;&#39;
-        self.target = &#39;http:&#x2F;&#x2F;www.netbian.com&#x2F;&#39;
-        self.img_server = &#39;http:&#x2F;&#x2F;img.netbian.com&#x2F;&#39;
-        self.urls = []      # 图片列表解析的地址
-        self.big_urls = []     # 图片的大图地址
-        self.real_urls = []     # 图片下载地址
-        self.names = []     # 图片名
-
-    &quot;&quot;&quot;
-    获取每页url集合
-    &quot;&quot;&quot;
-    def get_url_list(self):
-        req = requests.get(url=self.target)
-        bf = BeautifulSoup(req.text)
-        texts = bf.find_all(&#39;div&#39;, class_=&#39;list&#39;)
-        if len(texts) &lt;= 0:
-            return
-        else:
-            bf2 = BeautifulSoup(str(texts[0]))
-            urls = bf2.find_all(&#39;a&#39;)
-            for k in range(len(urls)):
-                if k % 2 == 0 and k != 4:       # 每个url重复，且第三个图片（即i=(4,5)时是广告）
-                    self.urls.append(self.server + urls[k].get(&#39;href&#39;))
-
-    &quot;&quot;&quot;
-    获取每张图片的 大图浏览页的地址
-    &quot;&quot;&quot;
-    def get_big_url(self):
-        for url in self.urls:
-            req = requests.get(url=url)
-            bf = BeautifulSoup(req.text)
-            texts = bf.find_all(&#39;div&#39;, class_=&#39;pic&#39;)
-            bf2 = BeautifulSoup(str(texts[0]))
-            urls = bf2.find_all(&#39;a&#39;)
-            self.big_urls.append(self.server + urls[0].get(&#39;href&#39;))
-
-    &quot;&quot;&quot;
-    获取图片的下载地址
-    &quot;&quot;&quot;
-    def get_real_urls(self):
-        for url in self.big_urls:
-            req = requests.get(url=url)
-            bf = BeautifulSoup(req.text)
-            texts = bf.find_all(&#39;td&#39;, align=&#39;left&#39;)
-            bf2 = BeautifulSoup(str(texts[0]))
-            urls = bf2.find_all(&#39;a&#39;)
-            self.real_urls.append(urls[0].get(&#39;href&#39;))
-            self.names.append(urls[0].get(&#39;title&#39;))
-
-    &quot;&quot;&quot;
-    下载图片
-    &quot;&quot;&quot;
-    def download(self):
-        path = os.path.abspath(&#39;.&#39;)
-        path2 = os.path.join(path, &#39;pic&#39;)
-        if os.path.isdir(path2):
-            pass
-        else:
-            os.mkdir(path2)
-        for j in range(len(self.real_urls)):
-            time.sleep(1)
-            pu = os.path.join(path2, self.names[j]+&#39;.jpg&#39;)
-            print(self.real_urls[j])
-            with closing(requests.get(url=self.real_urls[j], stream=True, verify=False)) as r:
-                with open(pu, &#39;ab+&#39;) as f:
-                    for chunk in r.iter_content(chunk_size=1024):
-                        if chunk:
-                            f.write(chunk)
-                            f.flush()
-
-
-if __name__ == &#39;__main__&#39;:
-    for i in range(3):  # 爬取3页
-        obj = DownloadPic()
-        if i &gt; 0:
-            index = i+1
-            obj.target = obj.target + &#39;index_&#39; + str(index) + &#39;.htm&#39;
-        else:
-            pass
-        obj.get_url_list()
-        obj.get_big_url()
-        obj.get_real_urls()
-        obj.download()
-		</code></pre><br>结果如下：<br><img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/12.png" alt="结果" title="结果">  </p>
-<p><br></p>
-<p>问题：<br>  爬取的图片无法打开，经查看图片显示的大小仅1kb，无法打开；经查找发现是获取的图片路径有误，响应为403错误，程序不能正常解析导致。</p>
-<p>Tip: 以上内容仅用于学习！</p>
+                <h3><span id="1class-loader类加载器">1.class Loader（类加载器）</span></h3><p>我们编写的java文件，编辑器会编译成<font color="#0099ff" face="微软雅黑">*.class</font>的字节码文件；在我们执行代码时，会由<font color="#0099ff" face="微软雅黑">类加载器</font>将文件加载到运行时数据区（内存）中去执行。<br>我们先来看一段简单的代码：<br><pre><code>public class Test {
+	public static void main(String[] args) {
+		System.out.println(Test.class.getClassLoader());
+	}
+}</code></pre><br>执行将打印如下内容：<br><img src="/2018/12/30/nong-dong-jvm/images/image2.PNG" alt="打印" title="打印"><br>打印出了加载这个类所用到的类加载器为<font color="#0099ff" face="微软雅黑">AppClassLoader</font>，那么它具体是怎么加载的呢,加载过程是什么样的呢？<br>打开命令行工具，cd进入Test.class所在目录，执行java指令:<font color="#0099ff" face="微软雅黑">java -verbose test.Test</font><br><img src="/2018/12/30/nong-dong-jvm/images/3.png" alt="打印" title="打印"><br>有没有一种很熟悉的感觉？对，首先打开了rt.jar，然后就去加载了Object类…<br>回到最开始执行代码打印的sun.misc.Launcher$AppClassLoader@73d16e93，在命令行中找到它:<br><img src="/2018/12/30/nong-dong-jvm/images/4.png" alt="打印" title="打印"><br>可以看出，加载了这么几个类 启动类加载器（bootstrapClassLoader）、扩展类加载器(ExtClassLoader)、系统类加载器(AppClassLoader)<br>在通过一段代码，探索一下他们的关系：<br><pre><code>public class Test {
+	public static void main(String[] args) {
+		ClassLoader c = Test.class.getClassLoader();
+		while(c != null) {
+			System.out.println(c);
+			c = c.getParent();
+		}
+	}
+}</code></pre><br>打印如下：<br><img src="/2018/12/30/nong-dong-jvm/images/6.png" alt="打印" title="打印"><br>很明显，AppClassLoader的上级为ExtClassLoader（<font color="#0099ff" face="微软雅黑">注意：不是继承关系，只是一种组合关系</font>）。那么ExtClassLoader的上级加载器是什么呢？  来看一下源码：<br><img src="/2018/12/30/nong-dong-jvm/images/5.png" alt="打印" title="打印"><br><img src="/2018/12/30/nong-dong-jvm/images/7.png" alt="打印" title="打印"><br>上面这段代码，<font color="#0099ff" face="微软雅黑">synchronized</font>保证了只有一个线程进行加载，然后loadclass方法是一个递归方法，一直找到最上层加载器才去进行加载（双亲委派机制），然后找不到上级的时候，最终去找到了一个<font color="#0099ff" face="微软雅黑">native</font>本地方法（根据操作系统不同，实现也不一样，一般为c++实现的，是java实现跨平台的原因），即我们的启动类加载器。<br>现在很清楚了，来总结一下，用下面的一张图进行说明：<br><img src="/2018/12/30/nong-dong-jvm/images/8.png" alt="打印" title="打印"><br>启动类加载器，负责将JAVA_HOME/lib下的类库（如rt.jar）加载到内存中，这是一个本地私有方法，不同通过程序引用去调用执行。<br>扩展类加载器，负责将JAVA_HOME/lib/ext或者由系统变量java.ext.dir指定位置的类库加载到内存。<br>应用程序类加载器（即系统类加载器，getSystemClassLoader()的返回值），负责将classpath类路径下的类加载到内存。  </p>
+<p>双亲委派机制： 加载时，自上而下；检查时，自下而上。  这也是java虚拟机为了保证程序执行安全的一种方式。下面我来简单解释一下：<br>来看一段代码，新建一个名称为List的类：<br><img src="/2018/12/30/nong-dong-jvm/images/9.png" alt="打印" title="打印"><br>这段代码虽然可以编译通过，但是却不能够正常执行。就是因为是自上而下加载的，List已经由上级加载器 加载过了（rt.jar中），就不能进行加载了。保证了在写出了不安全的程序时，JDK不让它执行。  </p>
+<h3><span id="2runtime-data-area运行时数据区">2.Runtime Data Area（运行时数据区）</span></h3><p>借助一张图来进行说明：<br><img src="/2018/12/30/nong-dong-jvm/images/10.png" alt="打印" title="打印">  </p>
+<ol>
+<li>堆。 对于大多数应用程序来说，堆是java虚拟机管理的内存中最大的一块。 堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。 此区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。 如果堆中没有内存完成实例分配，并且堆也无法再扩展时，就会抛出OutOfMemoryError异常。  </li>
+<li>方法区。 此区域同样是线程共享的区域。 被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等都存储在这里。 当方法去无法满足内存分配需求时，会抛出OutOfMemoryError异常。  </li>
+<li>程序计数器。 是一块较小的内存空间，当前线程所执行的字节码行号指示器。<br>进去cmd,执行指令： javap -c Test<br><img src="/2018/12/30/nong-dong-jvm/images/11.png" alt="打印" title="打印"><br>可以看到，编译后的每一条执行指令都有对应一个编号。 就是指向执行指令的地址，执行后做累加操作。使得程序按照一定的步骤去执行。  </li>
+<li>栈。 每当启动一个新线程的时候，java虚拟机都会为它分配一个栈。java以栈帧为单位来保存线程的运行状态。虚拟机只会为栈执行两种操作：以栈帧为单位的入栈和出栈。  </li>
+</ol>
+<p>最后，下面这张图对于大家进行jvm调优肯定会有帮助的：<br><img src="/2018/12/30/nong-dong-jvm/images/12.png" alt="打印" title="打印"><br><img src="/2018/12/30/nong-dong-jvm/images/13.png" alt="打印" title="打印">  </p>
+<p><img src="/2018/12/30/nong-dong-jvm/images/14.png" alt="打印" title="打印"></p>
 
             </div>
             <hr>
@@ -534,7 +376,7 @@ if __name__ == &#39;__main__&#39;:
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="http://www.yinghao-chen.top" class="b-link-green">不好听的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/" class="b-link-green">初识python-爬取网页文字和图片</a>
+                    <a href="/2018/12/30/nong-dong-jvm/" class="b-link-green">弄懂JVM</a>
                 </p>
             </div>
         </div>
@@ -556,7 +398,7 @@ if __name__ == &#39;__main__&#39;:
         repo: 'yinghao-Chen.github.io',
         owner: 'yinghao-Chen',
         admin: "yinghao-Chen",
-        id: '2018-12-08T19-22-58',
+        id: '2018-12-30T12-07-15',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -576,7 +418,7 @@ if __name__ == &#39;__main__&#39;:
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
             <div class="card">
                 <a href="/2018/12/30/nong-dong-jvm/">
                     <div class="card-image">
@@ -589,9 +431,9 @@ if __name__ == &#39;__main__&#39;:
                 <div class="card-content article-content">
                     <div class="summary">1.class Loader（类加载器）我们编写的java文件，编辑器会编译成*.class的字节码文件；在我们执行代码时，会由类加载器将文件加载到运行时数据区（内存）中去执行。我们先来看一段简单的代码：public class Test </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-30
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-30
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -604,6 +446,7 @@ if __name__ == &#39;__main__&#39;:
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -620,21 +463,23 @@ if __name__ == &#39;__main__&#39;:
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
-                <a href="/2018/12/04/chu-shi-python-yun-xing-huan-jing/">
+                <a href="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/">
                     <div class="card-image">
                         
-                        <img src="/2018/12/04/chu-shi-python-yun-xing-huan-jing/images/timg.jpg" class="responsive-img" alt="初识python: 运行环境">
+                        <img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/image1.jpg" class="responsive-img" alt="初识python-爬取网页文字和图片">
                         
-                        <span class="card-title">初识python: 运行环境</span>
+                        <span class="card-title">初识python-爬取网页文字和图片</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
-                    <div class="summary">此过程为windows7上的开发环境  
-安装anaconda(开源的Python发行版本，其包含了conda、Python等180多个科学包及其依赖项)
-用pip命令安装开发Web App需要的第三方库：异步框架aiohttp：pip i</div>
+                    <div class="summary">学习了一下用python爬取网络上的文字和图片，在此记录一下。  
+1.下载“笔趣看”网页上的小说代码如下：# __*__ coding:UTF-8 __*__
+
+import requests
+from bs4 import Beauti</div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-04
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
                             </span>
                         <span class="publish-author">
                             
@@ -653,6 +498,10 @@ if __name__ == &#39;__main__&#39;:
                     
                     <a href="/tags/python/" target="_blank">
                         <span class="chip bg-color">python</span>
+                    </a>
+                    
+                    <a href="/tags/爬虫/" target="_blank">
+                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>
