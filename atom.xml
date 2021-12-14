@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yinghao-chen.github.io/"/>
-  <updated>2018-12-30T07:20:00.654Z</updated>
+  <updated>2021-12-14T13:59:18.317Z</updated>
   <id>https://yinghao-chen.github.io/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Java内存模型（JMM）</title>
+    <link href="https://yinghao-chen.github.io/2021/12/14/java-nei-cun-mo-xing-jmm/"/>
+    <id>https://yinghao-chen.github.io/2021/12/14/java-nei-cun-mo-xing-jmm/</id>
+    <published>2021-12-14T13:43:08.000Z</published>
+    <updated>2021-12-14T13:59:18.317Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;blockquote&gt;
+&lt;p&gt;在面试中，面试官经常喜欢问：『说说什么是Java内存模型(JMM)？』&lt;br&gt;面试者内心狂喜，这题刚背过：『Java内存主要分为五大块：堆、方法区、虚拟机栈、本地方法栈、PC寄存器，balabala……』&lt;br&gt;面试官会心一笑，露出一道光芒：『好了
+        
+      
+    
+    </summary>
+    
+      <category term="java" scheme="https://yinghao-chen.github.io/categories/java/"/>
+    
+    
+      <category term="java" scheme="https://yinghao-chen.github.io/tags/java/"/>
+    
+      <category term="JMM" scheme="https://yinghao-chen.github.io/tags/JMM/"/>
+    
+      <category term="内存模型" scheme="https://yinghao-chen.github.io/tags/%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>弄懂JVM</title>
