@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://yinghao-chen.github.io/"/>
-  <updated>2021-12-14T13:59:18.317Z</updated>
+  <updated>2021-12-14T14:29:49.141Z</updated>
   <id>https://yinghao-chen.github.io/</id>
   
   <author>
@@ -17,11 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用浏览器标签实现录屏</title>
+    <link href="https://yinghao-chen.github.io/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/"/>
+    <id>https://yinghao-chen.github.io/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/</id>
+    <published>2021-12-14T14:16:46.000Z</published>
+    <updated>2021-12-14T14:29:49.141Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;使用浏览器标签实现录屏非常简单，我们只需要在浏览器中添加一个标签，标签名称随意，网址填写以下代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;javascript:(async function(){let stream=await
+        
+      
+    
+    </summary>
+    
+      <category term="javascript" scheme="https://yinghao-chen.github.io/categories/javascript/"/>
+    
+    
+      <category term="javascript" scheme="https://yinghao-chen.github.io/tags/javascript/"/>
+    
+      <category term="浏览器标签" scheme="https://yinghao-chen.github.io/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A0%87%E7%AD%BE/"/>
+    
+      <category term="录屏" scheme="https://yinghao-chen.github.io/tags/%E5%BD%95%E5%B1%8F/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Java内存模型（JMM）</title>
     <link href="https://yinghao-chen.github.io/2021/12/14/java-nei-cun-mo-xing-jmm/"/>
     <id>https://yinghao-chen.github.io/2021/12/14/java-nei-cun-mo-xing-jmm/</id>
     <published>2021-12-14T13:43:08.000Z</published>
-    <updated>2021-12-14T13:59:18.317Z</updated>
+    <updated>2021-12-14T14:10:52.868Z</updated>
     
     <summary type="html">
     

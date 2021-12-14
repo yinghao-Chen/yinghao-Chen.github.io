@@ -5,8 +5,9 @@
 
 <head><meta name="generator" content="Hexo 3.8.0">
     <meta charset="utf-8">
-    <meta name="keywords" content="弄懂JVM, 不好听的博客">
-    <meta name="description" content="1.class Loader（类加载器）我们编写的java文件，编辑器会编译成*.class的字节码文件；在我们执行代码时，会由类加载器将文件加载到运行时数据区（内存）中去执行。我们先来看一段简单的代码：public class Test ">
+    <meta name="keywords" content="使用浏览器标签实现录屏, 不好听的博客">
+    <meta name="description" content="使用浏览器标签实现录屏非常简单，我们只需要在浏览器中添加一个标签，标签名称随意，网址填写以下代码：
+javascript:(async function(){let stream=await navigator.mediaDevices.g">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -14,7 +15,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>弄懂JVM | 不好听的博客</title>
+    <title>使用浏览器标签实现录屏 | 不好听的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/font-awesome.min.css">
@@ -189,13 +190,13 @@
 
 
 
-<div class="bg-cover post-cover" style="background-image: url('/2018/12/30/nong-dong-jvm/images/image1.png')">
+<div class="bg-cover post-cover" style="background-image: url('/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/images/image1.png')">
     <div class="container">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        弄懂JVM
+                        使用浏览器标签实现录屏
                     </div>
                 </div>
             </div>
@@ -306,8 +307,16 @@
             
             <div class="article-tag">
                 
-                <a href="/tags/jvm/" target="_blank">
-                    <span class="chip bg-color">jvm</span>
+                <a href="/tags/javascript/" target="_blank">
+                    <span class="chip bg-color">javascript</span>
+                </a>
+                
+                <a href="/tags/浏览器标签/" target="_blank">
+                    <span class="chip bg-color">浏览器标签</span>
+                </a>
+                
+                <a href="/tags/录屏/" target="_blank">
+                    <span class="chip bg-color">录屏</span>
                 </a>
                 
             </div>
@@ -317,44 +326,25 @@
                 <span class="post-cate">
                     <i class="fa fa-bookmark fa-fw icon-category"></i>
                     
-                    <a href="/categories/java/" class="post-category" target="_blank">
-                        java
+                    <a href="/categories/javascript/" class="post-category" target="_blank">
+                        javascript
                     </a>
                     
                 </span>
                 
 
                 <span class="post-date">
-                    <i class="fa fa-clock-o fa-fw"></i>2018-12-30
+                    <i class="fa fa-clock-o fa-fw"></i>2021-12-14
                 </span>
             </div>
         </div>
         <hr>
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3><span id="1class-loader类加载器">1.class Loader（类加载器）</span></h3><p>我们编写的java文件，编辑器会编译成<font color="#0099ff" face="微软雅黑">*.class</font>的字节码文件；在我们执行代码时，会由<font color="#0099ff" face="微软雅黑">类加载器</font>将文件加载到运行时数据区（内存）中去执行。<br>我们先来看一段简单的代码：<br><pre><code>public class Test {
-	public static void main(String[] args) {
-		System.out.println(Test.class.getClassLoader());
-	}
-}</code></pre><br>执行将打印如下内容：<br><img src="/2018/12/30/nong-dong-jvm/images/image2.PNG" alt="打印" title="打印"><br>打印出了加载这个类所用到的类加载器为<font color="#0099ff" face="微软雅黑">AppClassLoader</font>，那么它具体是怎么加载的呢,加载过程是什么样的呢？<br>打开命令行工具，cd进入Test.class所在目录，执行java指令:<font color="#0099ff" face="微软雅黑">java -verbose test.Test</font><br><img src="/2018/12/30/nong-dong-jvm/images/3.png" alt="打印" title="打印"><br>有没有一种很熟悉的感觉？对，首先打开了rt.jar，然后就去加载了Object类…<br>回到最开始执行代码打印的sun.misc.Launcher$AppClassLoader@73d16e93，在命令行中找到它:<br><img src="/2018/12/30/nong-dong-jvm/images/4.png" alt="打印" title="打印"><br>可以看出，加载了这么几个类 启动类加载器（bootstrapClassLoader）、扩展类加载器(ExtClassLoader)、系统类加载器(AppClassLoader)<br>在通过一段代码，探索一下他们的关系：<br><pre><code>public class Test {
-	public static void main(String[] args) {
-		ClassLoader c = Test.class.getClassLoader();
-		while(c != null) {
-			System.out.println(c);
-			c = c.getParent();
-		}
-	}
-}</code></pre><br>打印如下：<br><img src="/2018/12/30/nong-dong-jvm/images/6.png" alt="打印" title="打印"><br>很明显，AppClassLoader的上级为ExtClassLoader（<font color="#0099ff" face="微软雅黑">注意：不是继承关系，只是一种组合关系</font>）。那么ExtClassLoader的上级加载器是什么呢？  来看一下源码：<br><img src="/2018/12/30/nong-dong-jvm/images/5.png" alt="打印" title="打印"><br><img src="/2018/12/30/nong-dong-jvm/images/7.png" alt="打印" title="打印"><br>上面这段代码，<font color="#0099ff" face="微软雅黑">synchronized</font>保证了只有一个线程进行加载，然后loadclass方法是一个递归方法，一直找到最上层加载器才去进行加载（双亲委派机制），然后找不到上级的时候，最终去找到了一个<font color="#0099ff" face="微软雅黑">native</font>本地方法（根据操作系统不同，实现也不一样，一般为c++实现的，是java实现跨平台的原因），即我们的启动类加载器。<br>现在很清楚了，来总结一下，用下面的一张图进行说明：<br><img src="/2018/12/30/nong-dong-jvm/images/8.png" alt="打印" title="打印"><br>启动类加载器，负责将JAVA_HOME/lib下的类库（如rt.jar）加载到内存中，这是一个本地私有方法，不同通过程序引用去调用执行。<br>扩展类加载器，负责将JAVA_HOME/lib/ext或者由系统变量java.ext.dir指定位置的类库加载到内存。<br>应用程序类加载器（即系统类加载器，getSystemClassLoader()的返回值），负责将classpath类路径下的类加载到内存。  </p>
-<p>双亲委派机制： 加载时，自上而下；检查时，自下而上。  这也是java虚拟机为了保证程序执行安全的一种方式。下面我来简单解释一下：<br>来看一段代码，新建一个名称为List的类：<br><img src="/2018/12/30/nong-dong-jvm/images/9.png" alt="打印" title="打印"><br>这段代码虽然可以编译通过，但是却不能够正常执行。就是因为是自上而下加载的，List已经由上级加载器 加载过了（rt.jar中），就不能进行加载了。保证了在写出了不安全的程序时，JDK不让它执行。  </p>
-<h3><span id="2runtime-data-area运行时数据区">2.Runtime Data Area（运行时数据区）</span></h3><p>借助一张图来进行说明：<br><img src="/2018/12/30/nong-dong-jvm/images/10.png" alt="打印" title="打印">  </p>
-<ol>
-<li>堆。 对于大多数应用程序来说，堆是java虚拟机管理的内存中最大的一块。 堆是被所有线程共享的一块内存区域，在虚拟机启动时创建。 此区域的唯一目的就是存放对象实例，几乎所有的对象实例都在这里分配内存。 如果堆中没有内存完成实例分配，并且堆也无法再扩展时，就会抛出OutOfMemoryError异常。  </li>
-<li>方法区。 此区域同样是线程共享的区域。 被虚拟机加载的类信息、常量、静态变量、即时编译后的代码等都存储在这里。 当方法去无法满足内存分配需求时，会抛出OutOfMemoryError异常。  </li>
-<li>程序计数器。 是一块较小的内存空间，当前线程所执行的字节码行号指示器。<br>进去cmd,执行指令： javap -c Test<br><img src="/2018/12/30/nong-dong-jvm/images/11.png" alt="打印" title="打印"><br>可以看到，编译后的每一条执行指令都有对应一个编号。 就是指向执行指令的地址，执行后做累加操作。使得程序按照一定的步骤去执行。  </li>
-<li>栈。 每当启动一个新线程的时候，java虚拟机都会为它分配一个栈。java以栈帧为单位来保存线程的运行状态。虚拟机只会为栈执行两种操作：以栈帧为单位的入栈和出栈。  </li>
-</ol>
-<p>最后，下面这张图对于大家进行jvm调优肯定会有帮助的：<br><img src="/2018/12/30/nong-dong-jvm/images/12.png" alt="打印" title="打印"><br><img src="/2018/12/30/nong-dong-jvm/images/13.png" alt="打印" title="打印">  </p>
-<p><img src="/2018/12/30/nong-dong-jvm/images/14.png" alt="打印" title="打印"></p>
+                <p>使用浏览器标签实现录屏非常简单，我们只需要在浏览器中添加一个标签，标签名称随意，网址填写以下代码：</p>
+<pre><code>javascript:(async function(){let stream=await navigator.mediaDevices.getDisplayMedia({video:true});const mime=MediaRecorder.isTypeSupported(&quot;video/webm; codecs=vp9&quot;)?%22video/webm;%20codecs=vp9%22:%22video/webm%22;let%20mediaRecorder=new%20MediaRecorder(stream,{mimeType:mime});let%20chunks=[];mediaRecorder.addEventListener(%27dataavailable%27,function(e){chunks.push(e.data)});mediaRecorder.addEventListener(%27stop%27,function(){let%20blob=new%20Blob(chunks,{type:chunks[0].type});let%20url=URL.createObjectURL(blob);let%20a=document.createElement(%27a%27);a.href=url;a.download=%27video.mp4%27;a.click()});mediaRecorder.start()})();
+</code></pre><p><img src="/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/images/image1.png" alt="添加标签"></p>
+<p><img src="/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/images/image2.png" alt="点击标签录屏"></p>
 
             </div>
             <hr>
@@ -376,7 +366,7 @@
                     <span class="reprint-tip">转载请注明: </span>
                     <a href="https://yinghao-chen.github.io" class="b-link-green">不好听的博客</a>
                     <i class="fa fa-angle-right fa-lg fa-fw text-color"></i>
-                    <a href="/2018/12/30/nong-dong-jvm/" class="b-link-green">弄懂JVM</a>
+                    <a href="/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/" class="b-link-green">使用浏览器标签实现录屏</a>
                 </p>
             </div>
         </div>
@@ -398,7 +388,7 @@
         repo: 'yinghao-Chen.github.io',
         owner: 'yinghao-Chen',
         admin: "yinghao-Chen",
-        id: '2018-12-30T12-07-15',
+        id: '2021-12-14T22-16-46',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -418,7 +408,59 @@
     <div class="row article-row">
         
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">上一篇</div>
+            <div class="article-badge left-badge text-color">本篇</div>
+            <div class="card">
+                <a href="/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/">
+                    <div class="card-image">
+                        
+                        <img src="/2021/12/14/shi-yong-liu-lan-qi-biao-qian-shi-xian-lu-ping/images/image1.png" class="responsive-img" alt="使用浏览器标签实现录屏">
+                        
+                        <span class="card-title">使用浏览器标签实现录屏</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary">使用浏览器标签实现录屏非常简单，我们只需要在浏览器中添加一个标签，标签名称随意，网址填写以下代码：
+javascript:(async function(){let stream=await navigator.mediaDevices.g</div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-12-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/javascript/" class="post-category" target="_blank">
+                                    javascript
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/javascript/" target="_blank">
+                        <span class="chip bg-color">javascript</span>
+                    </a>
+                    
+                    <a href="/tags/浏览器标签/" target="_blank">
+                        <span class="chip bg-color">浏览器标签</span>
+                    </a>
+                    
+                    <a href="/tags/录屏/" target="_blank">
+                        <span class="chip bg-color">录屏</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">下一篇</div>
             <div class="card">
                 <a href="/2021/12/14/java-nei-cun-mo-xing-jmm/">
                     <div class="card-image">
@@ -432,9 +474,9 @@
                     <div class="summary">
 在面试中，面试官经常喜欢问：『说说什么是Java内存模型(JMM)？』面试者内心狂喜，这题刚背过：『Java内存主要分为五大块：堆、方法区、虚拟机栈、本地方法栈、PC寄存器，balabala……』面试官会心一笑，露出一道光芒：『好了，今天</div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="fa fa-clock-o fa-fw icon-date"></i>2021-12-14
-                        </span>
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2021-12-14
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -460,56 +502,6 @@
                     
                     <a href="/tags/内存模型/" target="_blank">
                         <span class="chip bg-color">内存模型</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">下一篇</div>
-            <div class="card">
-                <a href="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/">
-                    <div class="card-image">
-                        
-                        <img src="/2018/12/08/chu-shi-python-pa-qu-wang-ye-wen-zi-he-tu-pian/images/image1.jpg" class="responsive-img" alt="初识python-爬取网页文字和图片">
-                        
-                        <span class="card-title">初识python-爬取网页文字和图片</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary">学习了一下用python爬取网络上的文字和图片，在此记录一下。  
-1.下载“笔趣看”网页上的小说代码如下：# __*__ coding:UTF-8 __*__
-
-import requests
-from bs4 import Beauti</div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2018-12-08
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fa fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/python/" class="post-category" target="_blank">
-                                    python
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/python/" target="_blank">
-                        <span class="chip bg-color">python</span>
-                    </a>
-                    
-                    <a href="/tags/爬虫/" target="_blank">
-                        <span class="chip bg-color">爬虫</span>
                     </a>
                     
                 </div>
